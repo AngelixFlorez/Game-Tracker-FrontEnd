@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import TarjetaJuego from '../components/TarjetaJuego';
-import { obtenerJuegos, eliminarJuego } from '../services/JuegoService';
-import { obtenerResenas } from '../services/ResenaService'; 
+import TarjetaJuego from '../componentes/TarjetaJuego';
+import { obtenerJuegos, eliminarJuego } from '../servicios/JuegoServicio';
+import { obtenerResenas } from '../servicios/ResenaServicio'; 
 import { Link } from 'react-router-dom';
 
 const BibliotecaJuegos = () => {

@@ -1,7 +1,6 @@
-// src/views/FormularioJuego.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { crearJuego, obtenerJuegoPorId, actualizarJuego } from '../services/JuegoService';
+import { crearJuego, obtenerJuegoPorId, actualizarJuego } from '../servicios/JuegoServicio';
 
 const initialFormState = {
     titulo: '',

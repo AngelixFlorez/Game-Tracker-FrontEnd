@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import PuntuacionEstrellas from './PuntuacionEstrellas';
-import { crearResena } from '../services/ResenaService'; 
+import { crearResena } from '../servicios/ResenaServicio'; 
 
 // Opciones para el campo 'dificultad'
 const dificultades = ['Fácil', 'Normal', 'Difícil'];

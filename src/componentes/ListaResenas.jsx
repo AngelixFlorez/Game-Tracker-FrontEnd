@@ -2,7 +2,7 @@
 import React from 'react';
 import { FaClock, FaHeart, FaStar, FaTrash } from 'react-icons/fa';
 import PuntuacionEstrellas from './PuntuacionEstrellas';
-import { eliminarResena } from '../services/ResenaService';
+import { eliminarResena } from '../servicios/ResenaServicio';
 
 const ResenaCard = ({ resena, onDelete }) => {
     

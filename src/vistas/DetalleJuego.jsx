@@ -1,11 +1,11 @@
 // src/views/DetalleJuego.jsx
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { obtenerJuegoPorId } from '../services/JuegoService';
-import { obtenerResenas } from '../services/ResenaService';
+import { obtenerJuegoPorId } from '../servicios/JuegoServicio';
+import { obtenerResenas } from '../servicios/ResenaServicio';
 import { FaChevronLeft, FaStar, FaClock, FaLaptop } from 'react-icons/fa';
-import FormularioReseña from '../components/FormularioReseña';
-import ListaResenas from '../components/ListaReseñas';
+import FormularioReseña from '../componentes/FormularioResena';
+import ListaResenas from '../componentes/ListaResenas';
 
 // Componente para mostrar las estrellas en el detalle
 const DetalleStarRating = ({ rating }) => {

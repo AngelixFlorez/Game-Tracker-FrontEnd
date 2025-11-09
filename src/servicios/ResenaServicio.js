@@ -1,8 +1,7 @@
 // src/services/ResenaService.js
 import axios from 'axios';
 
-// **¡IMPORTANTE!** Ajusta el puerto si tu backend no usa el 4000
-const API_URL = 'http://localhost:4000/api/resenas'; 
+const API_URL = 'http://localhost:3000/api/resenas'; 
 
 // OBTENER RESEÑAS (Permite filtrar por juegoId para el detalle)
 export const obtenerResenas = async (juegoId = null) => {

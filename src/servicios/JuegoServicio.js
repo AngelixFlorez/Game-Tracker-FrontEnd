@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // **¡IMPORTANTE!** Ajusta el puerto si tu backend no usa el 4000
-const API_URL = 'http://localhost:4000/api/juegos'; 
+const API_URL = 'http://localhost:3000/api/juegos'; 
 
 // Carga de todos los juegos
 export const obtenerJuegos = async () => {

@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { obtenerJuegos } from '../services/JuegoService';
+import { obtenerJuegos } from '../servicios/JuegoServicio';
 import { FaTrophy, FaHourglassHalf, FaGamepad, FaChartPie, FaCheckCircle } from 'react-icons/fa';
 
 // Componente helper para mostrar una estadística clave

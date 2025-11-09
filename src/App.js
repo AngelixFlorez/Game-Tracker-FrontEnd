@@ -1,10 +1,10 @@
 // src/App.jsx (o App.js)
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import BibliotecaJuegos from './views/BibliotecaJuegos';
-import FormularioJuego from './views/FormularioJuego';
-import EstadisticasPersonales from './views/EstadisticasPersonales';
-import DetalleJuego from './views/DetalleJuego';
+import BibliotecaJuegos from './vistas/BibliotecaJuegos';
+import FormularioJuego from './vistas/FormularioJuego';
+import EstadisticasPersonales from './vistas/EstadisticasPersonales';
+import DetalleJuego from './vistas/DetalleJuego';
     
 // Componente de Navegación simple (Navbar)
 const Navbar = () => (
