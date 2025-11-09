@@ -1,11 +1,11 @@
-// src/App.jsx (o App.js)
+// src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import BibliotecaJuegos from './views/BibliotecaJuegos';
 import FormularioJuego from './views/FormularioJuego';
 import EstadisticasPersonales from './views/EstadisticasPersonales';
 import DetalleJuego from './views/DetalleJuego';
-    
+
 // Componente de Navegación simple (Navbar)
 const Navbar = () => (
   <nav className="bg-gray-800 p-4 text-white flex justify-between items-center shadow-lg">
@@ -34,7 +34,7 @@ function App() {
           <Route path="/agregar" element={<FormularioJuego />} />
           <Route path="/editar/:id" element={<FormularioJuego />} />
 
-          {/* 3. Ruta para el detalle del juego (donde irán las reseñas) */}
+          {/* 3. Ruta para el detalle del juego (donde irán las reseñas) */} 
           <Route path="/juego/:id" element={<DetalleJuego />} /> 
           
           {/* 4. Dashboard de estadísticas */}
