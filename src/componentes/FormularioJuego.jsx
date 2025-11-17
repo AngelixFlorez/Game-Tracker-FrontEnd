@@ -32,8 +32,21 @@ const FormularioJuego = ({ juegoActual, onClose }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <input name="titulo" value={formData.titulo} onChange={handleChange} placeholder="Título" className="border p-2 w-full" required />
-      {/* Agrega inputs para todos los campos, checkbox para completado, number para horas */}
-      <button type="submit" className="bg-blue-500 text-white p-2">Guardar</button>
+      <input name="genero" value={formData.genero} onChange={handleChange} placeholder="Género" className="border p-2 w-full" />
+      <input name="plataforma" value={formData.plataforma} onChange={handleChange} placeholder="Plataforma" className="border p-2 w-full" />
+      <input name="añoLanzamiento" type="number" value={formData.añoLanzamiento} onChange={handleChange} placeholder="Año de Lanzamiento" className="border p-2 w-full" />
+      <input name="desarrollador" value={formData.desarrollador} onChange={handleChange} placeholder="Desarrollador" className="border p-2 w-full" />
+      <textarea name="descripcion" value={formData.descripcion} onChange={handleChange} placeholder="Descripción" className="border p-2 w-full" />
+      <input name="imagenPortada" value={formData.imagenPortada} onChange={handleChange} placeholder="URL de la Imagen de Portada" className="border p-2 w-full" />
+      <div className="flex items-center">
+        <label htmlFor="completado" className="mr-2">Completado:</label>
+        <input id="completado" name="completado" type="checkbox" checked={formData.completado} onChange={handleChange} className="h-5 w-5" />
+      </div>
+      <div className="flex items-center">
+        <label htmlFor="horasJugadas" className="mr-2">Horas Jugadas:</label>
+        <input id="horasJugadas" name="horasJugadas" type="number" value={formData.horasJugadas} onChange={handleChange} placeholder="Horas Jugadas" className="border p-2 w-full" />
+      </div>
+      <button type="submit" className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 w-full">{juegoActual ? 'Actualizar' : 'Guardar'}</button>
     </form>
   );
 };
