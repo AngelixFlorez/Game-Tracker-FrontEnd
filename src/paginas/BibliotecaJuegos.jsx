@@ -1,61 +1,78 @@
-import React, { useEffect, useState } from 'react';
-import { getJuegos, deleteJuego, updateJuego } from '../services/api';
-import TarjetaJuego from '../componentes/TarjetaJuego';
+import { useState, useEffect } from 'react';
+import ListaJuegos from '../components/juego/ListaJuegos';
+import Modal from '../components/common/Modal';
+import FormularioJuego from '../components/juego/FormularioJuego';
+import { getJuegos, createJuego, updateJuego, deleteJuego } from '../services/api';
+import LoadingSpinner from '../components/common/LoadingSpinner';
 
 const BibliotecaJuegos = () => {
   const [juegos, setJuegos] = useState([]);
-  const [filtro, setFiltro] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [juegoEditar, setJuegoEditar] = useState(null);
 
-  const fetchJuegos = async () => {
+  const cargarJuegos = async () => {
+    setLoading(true);
     try {
       const res = await getJuegos();
       setJuegos(res.data);
     } catch (err) {
-      console.error("Error al cargar los juegos:", err);
+      alert('Error al cargar juegos');
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchJuegos();
+    cargarJuegos();
   }, []);
 
-  const handleEliminar = async (id) => {
-    if (window.confirm('¿Estás seguro de que quieres eliminar este juego?')) {
-      try {
-        await deleteJuego(id);
-        fetchJuegos(); // Recargar la lista de juegos
-      } catch (err) {
-        console.error("Error al eliminar el juego:", err);
-      }
-    }
-  };
-
-  const handleCompletado = async (juego) => {
+  const handleGuardar = async (data) => {
     try {
-      await updateJuego(juego._id, { ...juego, completado: !juego.completado });
-      fetchJuegos(); // Recargar para mostrar el estado actualizado
+      if (juegoEditar) {
+        await updateJuego(juegoEditar._id, data);
+      } else {
+        await createJuego(data);
+      }
+      cargarJuegos();
+      setModalOpen(false);
+      setJuegoEditar(null);
     } catch (err) {
-      console.error("Error al actualizar el juego:", err);
+      alert('Error al guardar');
     }
   };
 
-  const juegosFiltrados = juegos.filter(juego =>
-    juego.titulo.toLowerCase().includes(filtro.toLowerCase())
-  );
+  const handleDelete = async (id) => {
+    if (window.confirm('¿Eliminar este juego?')) {
+      await deleteJuego(id);
+      cargarJuegos();
+    }
+  };
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Buscar por título..."
-        className="mb-4 p-2 border rounded w-full"
-        onChange={(e) => setFiltro(e.target.value)}
-      />
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {juegosFiltrados.map(juego => (
-          <TarjetaJuego key={juego._id} juego={juego} onEliminar={handleEliminar} onCompletado={handleCompletado} />
-        ))}
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold">Mi Biblioteca</h1>
+        <button
+          onClick={() => setModalOpen(true)}
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          + Agregar Juego
+        </button>
       </div>
+
+      {loading ? <LoadingSpinner /> : <ListaJuegos juegos={juegos} onEdit={setJuegoEditar} onDelete={handleDelete} />}
+
+      <Modal
+        isOpen={modalOpen || !!juegoEditar}
+        onClose={() => {
+          setModalOpen(false);
+          setJuegoEditar(null);
+        }}
+        title={juegoEditar ? 'Editar Juego' : 'Nuevo Juego'}
+      >
+        <FormularioJuego juego={juegoEditar} onSuccess={handleGuardar} />
+      </Modal>
     </div>
   );
 };
