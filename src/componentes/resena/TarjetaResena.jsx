@@ -1,4 +1,4 @@
-import StarRating from '../common/StarRating';
+import StarRating from '../common/StarRating.jsx';
 
 const TarjetaResena = ({ resena }) => {
   return (

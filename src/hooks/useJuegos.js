@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getJuegos } from '../services/api';
+import { getJuegos } from '../services/api.js';
 
 export const useJuegos = () => {
   const [juegos, setJuegos] = useState([]);

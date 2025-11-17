@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getJuegos, getResenas } from '../services/api';
+import { getJuegos, getResenas } from '../services/api.js';
 
 const EstadisticasPersonales = () => {
   const [stats, setStats] = useState({

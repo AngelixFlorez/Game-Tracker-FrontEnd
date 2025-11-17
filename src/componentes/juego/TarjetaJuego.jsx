@@ -1,4 +1,4 @@
-import Button from '../common/Button';
+import Button from '../common/Button.jsx';
 import { Link } from 'react-router-dom';
 
 const TarjetaJuego = ({ juego, onEdit, onDelete }) => {

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import ListaJuegos from '../components/juego/ListaJuegos';
-import Modal from '../components/common/Modal';
-import FormularioJuego from '../components/juego/FormularioJuego';
-import { getJuegos, createJuego, updateJuego, deleteJuego } from '../services/api';
-import LoadingSpinner from '../components/common/LoadingSpinner';
+import ListaJuegos from '../componentes/juego/ListaJuegos.jsx';
+import Modal from '../componentes/common/Modal.jsx';
+import FormularioJuego from '../componentes/juego/FormularioJuego.jsx';
+import { getJuegos, createJuego, updateJuego, deleteJuego } from '../services/api.js';
+import LoadingSpinner from '../componentes/common/LoadingSpinner.jsx';
 
 const BibliotecaJuegos = () => {
   const [juegos, setJuegos] = useState([]);
@@ -27,26 +27,32 @@ const BibliotecaJuegos = () => {
     cargarJuegos();
   }, []);
 
-  const handleGuardar = async (data) => {
-    try {
-      if (juegoEditar) {
-        await updateJuego(juegoEditar._id, data);
-      } else {
-        await createJuego(data);
+  const handleDelete = async (id) => {
+    if (window.confirm('¿Estás seguro de que quieres eliminar este juego?')) {
+      try {
+        await deleteJuego(id);
+        cargarJuegos();
+        alert('Juego eliminado con éxito');
+      } catch (err) {
+        alert('Error al eliminar el juego');
       }
-      cargarJuegos();
-      setModalOpen(false);
-      setJuegoEditar(null);
-    } catch (err) {
-      alert('Error al guardar');
     }
   };
 
-  const handleDelete = async (id) => {
-    if (window.confirm('¿Eliminar este juego?')) {
-      await deleteJuego(id);
+  const handleCompletado = async (juego) => {
+    try {
+      await updateJuego(juego._id, { ...juego, completado: !juego.completado });
       cargarJuegos();
+      alert('Estado de completado actualizado');
+    } catch (err) {
+      alert('Error al actualizar el estado');
     }
+  };
+
+  const handleGuardar = async () => {
+    setModalOpen(false);
+    setJuegoEditar(null);
+    cargarJuegos();
   };
 
   return (
@@ -55,13 +61,25 @@ const BibliotecaJuegos = () => {
         <h1 className="text-3xl font-bold">Mi Biblioteca</h1>
         <button
           onClick={() => setModalOpen(true)}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
         >
           + Agregar Juego
         </button>
       </div>
 
-      {loading ? <LoadingSpinner /> : <ListaJuegos juegos={juegos} onEdit={setJuegoEditar} onDelete={handleDelete} />}
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <ListaJuegos
+          juegos={juegos}
+          onDelete={handleDelete}
+          onCompletado={handleCompletado}
+          onEdit={(juego) => {
+            setJuegoEditar(juego);
+            setModalOpen(true);
+          }}
+        />
+      )}
 
       <Modal
         isOpen={modalOpen || !!juegoEditar}
@@ -71,7 +89,10 @@ const BibliotecaJuegos = () => {
         }}
         title={juegoEditar ? 'Editar Juego' : 'Nuevo Juego'}
       >
-        <FormularioJuego juego={juegoEditar} onSuccess={handleGuardar} />
+        <FormularioJuego
+          juego={juegoEditar}
+          onSuccess={handleGuardar}
+        />
       </Modal>
     </div>
   );

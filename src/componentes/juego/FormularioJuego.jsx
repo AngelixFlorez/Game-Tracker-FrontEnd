@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import Input from '../common/Input';
-import Button from '../common/Button';
+import Input from '../common/Input.jsx';
+import Button from '../common/Button.jsx';
 
 const FormularioJuego = ({ juego, onSuccess }) => {
   const [formData, setFormData] = useState({

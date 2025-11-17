@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import BibliotecaJuegos from './páginas/BibliotecaJuegos';
-import ListaResenasPage from './páginas/ListaResenas';
-import EstadisticasPersonales from './páginas/EstadisticasPersonales';
-import NotFound from './páginas/NotFound';
+import BibliotecaJuegos from './paginas/BibliotecaJuegos.jsx';
+import ListaResenasPage from './paginas/ListaResenas.jsx';
+import EstadisticasPersonales from './paginas/EstadisticasPersonales.jsx';
+import NotFound from './paginas/NotFound.jsx';
 
 function App() {
   return (

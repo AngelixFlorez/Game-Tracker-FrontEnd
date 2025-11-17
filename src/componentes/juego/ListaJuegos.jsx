@@ -1,19 +1,26 @@
-import TarjetaJuego from './TarjetaJuego';
+import TarjetaJuego from './TarjetaJuego.jsx';
 
-const ListaJuegos = ({ juegos, onEdit, onDelete }) => {
-  if (juegos.length === 0) {
-    return <p className="text-center text-gray-500">No hay juegos en tu biblioteca.</p>;
-  }
-
+const ListaJuegos = ({ juegos, onDelete, onCompletado, onEdit }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {juegos.map((juego) => (
-        <TarjetaJuego
-          key={juego._id}
-          juego={juego}
-          onEdit={() => onEdit(juego)}
-          onDelete={() => onDelete(juego._id)}
-        />
+        <div key={juego._id} className="bg-white p-4 rounded shadow">
+          <h3 className="font-bold">{juego.titulo}</h3>
+          <p>{juego.plataforma}</p>
+          <p>Completado: {juego.completado ? 'Sí' : 'No'}</p>
+
+          <div className="mt-4 flex gap-2">
+            <button onClick={() => onEdit(juego)} className="bg-yellow-500 text-white px-3 py-1 rounded">
+              Editar
+            </button>
+            <button onClick={() => onCompletado(juego)} className="bg-green-500 text-white px-3 py-1 rounded">
+              {juego.completado ? 'Desmarcar' : 'Completar'}
+            </button>
+            <button onClick={() => onDelete(juego._id)} className="bg-red-500 text-white px-3 py-1 rounded">
+              Eliminar
+            </button>
+          </div>
+        </div>
       ))}
     </div>
   );

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import ListaResenas from '../components/resena/ListaResenas';
-import Modal from '../components/common/Modal';
-import FormularioResena from '../components/resena/FormularioResena';
+import ListaResenas from '../componentes/resena/ListaResenas.jsx';
+import Modal from '../componentes/common/Modal.jsx';
+import FormularioResena from '../componentes/resena/FormularioResena.jsx';
 import { getResenas, createResena } from '../services/api';
 
 const ListaResenasPage = () => {

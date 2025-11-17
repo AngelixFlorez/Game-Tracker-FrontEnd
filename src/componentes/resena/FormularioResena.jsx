@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import StarRating from '../common/StarRating';
-import Button from '../common/Button';
+import StarRating from '../common/StarRating.jsx';
+import Button from '../common/Button.jsx';
 
 const FormularioResena = ({ juegoId, onSuccess, resena }) => {
   const [formData, setFormData] = useState({

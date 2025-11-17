@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getResenas } from '../services/api';
+import { getResenas } from '../services/api.js';
 
 export const useResenas = (juegoId) => {
   const [resenas, setResenas] = useState([]);
