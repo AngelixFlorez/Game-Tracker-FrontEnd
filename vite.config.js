@@ -5,13 +5,13 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3001,
-    open: false,  // ¡DESACTIVA LA APERTURA AUTOMÁTICA!
-    host: true,   // Permite acceso desde red
+    host: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'http://localhost:3000',  // Tu backend
         changeOrigin: true,
-        secure: false
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, '/api')  // Esto es clave
       }
     }
   }

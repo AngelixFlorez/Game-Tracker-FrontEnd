@@ -1,3 +1,4 @@
+// Componente de Spinner de Carga
 const LoadingSpinner = () => {
   return (
     <div className="flex justify-center items-center py-8">

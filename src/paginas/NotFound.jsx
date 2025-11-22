@@ -1,4 +1,5 @@
 const NotFound = () => {
+  // Componente simple para mostrar un mensaje de error 404 cuando la ruta no existe
   return (
     <div className="text-center py-20">
       <h1 className="text-6xl font-bold text-gray-800">404</h1>

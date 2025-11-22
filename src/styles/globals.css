@@ -2,10 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+:root {
+  --gametracker-black: #141414;
+  --gametracker-dark-gray: #181818;
+  --gametracker-light-gray: #2f2f2f;
+  --gametracker-red: #e50914;
+  --gametracker-red-hover: #f40612;
+  --gametracker-text: #ffffff;
+  --gametracker-text-secondary: #b3b3b3;
 }
 
-input, textarea, select {
-  @apply focus:outline-none focus:ring-2 focus:ring-blue-500;
+body {
+  background-color: var(--gametracker-black);
+  color: var(--gametracker-text);
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+
+  scrollbar-width: none;
+
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

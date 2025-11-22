@@ -1,5 +1,6 @@
 import { FaStar } from 'react-icons/fa';
 
+// Componente de Calificación con Estrellas
 const StarRating = ({ rating, onRatingChange, readOnly = false }) => {
   return (
     <div className="flex space-x-1">
@@ -7,11 +8,10 @@ const StarRating = ({ rating, onRatingChange, readOnly = false }) => {
         <FaStar
           key={star}
           size={28}
-          className={`cursor-pointer transition ${
-            star <= rating
-              ? 'text-yellow-400'
-              : 'text-gray-300'
-          } ${readOnly ? '' : 'hover:text-yellow-500'}`}
+          className={`cursor-pointer transition ${star <= rating
+              ? 'text-yellow-400' // Estrella llena
+              : 'text-gray-300'   // Estrella vacía
+            } ${readOnly ? '' : 'hover:text-yellow-500'}`} // Efecto hover si no es solo lectura
           onClick={() => !readOnly && onRatingChange(star)}
         />
       ))}
